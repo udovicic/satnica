@@ -18,7 +18,7 @@ class ShiftsController extends Core\Controller
 	function __construct($controller, $action)
 	{
 		parent::__construct($controller, $action);
-		$this->requireUser = false;
+		$this->requireUser = true;
 		$this->user = new Core\User;
 	}
 
@@ -27,7 +27,7 @@ class ShiftsController extends Core\Controller
  */
 	function add()
 	{
-
+		$this->set('title', 'Dodavanje smjena');
 	}
 
 /**
@@ -35,6 +35,8 @@ class ShiftsController extends Core\Controller
  */
 	function save()
 	{
+		$this->set('title', 'Detalji smjene');
+		
 		if ( isset($_POST['submit']) == true) {
 			if (isset($_POST['js']) == true) {
 				// ajax request
@@ -62,10 +64,7 @@ class ShiftsController extends Core\Controller
 			$this->set('sati', $sati);
 		} else {
 			// form wasn't submited, fallback to shift input
-			$this->renderPage = false;
-			global $url;
-			$url = 'shifts/add';
-			callHook();
+			header('location: ' . SITE_URL . '/shifts/add');
 		}
 	}
 }

@@ -86,7 +86,8 @@ class Shift extends Core\Model
 			'id' =>$rate_id
 		);
 
-		return $this->query('SELECT * FROM rate where rate_id=:id', $arg);
+		$rates = $this->query('SELECT * FROM rate where rate_id=:id', $arg);
+		return $rates[0];
 	}
 
 /**
@@ -97,11 +98,13 @@ class Shift extends Core\Model
  */
 	function calculate($shift)
 	{
-		$rates = $this->getRates(1);
+		$user = new Core\User;
+
+		$rates = $this->getRates($user->get('rate_id'));
 		
 		$total = 0;
 		foreach ($shift as $key => $value) {
-			$total += $rates[0][$key] * $value;
+			$total += $rates[$key] * $value;
 		}
 
 		return number_format($total, 2);
