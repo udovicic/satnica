@@ -21,7 +21,7 @@ body {
 /* form */
 .form-container {
 	width: 220px;
-	margin: 80px auto;
+	margin: 120px auto;
 }
 .form-container p {
 	margin: 0;
@@ -56,6 +56,10 @@ body {
 }
 
 #submit {
+	background: #3d5054;
+	color: #ffffff;
+	cursor: pointer;
+	letter-spacing: 1px;
 	margin: 10px 0;
 	width: 220px;
 	border-radius: 5px;

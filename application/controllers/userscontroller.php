@@ -39,6 +39,7 @@ class UsersController extends Core\Controller
 			$user->setLoggedin(true);
 			$user->set('rate_id', $user_info['rate_id_fk']);
 			$user->set('username', $username);
+			$user->set('user_id', $user_info['user_id']);
 
 			// redirect to default page
 			header("location: " . SITE_URL);

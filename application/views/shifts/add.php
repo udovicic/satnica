@@ -14,7 +14,7 @@
 				</p>
 			</div>
 			<div class="form-content" id="details">
-				<input type="text" name="comment" id="comment" value="" placeholder="Vaš komentar...">
+				<input type="text" name="note" id="note" value="" placeholder="Vaš komentar...">
 			</div>
 			<div class="form-content" id="result"></div>
 			<div class="form-footer">

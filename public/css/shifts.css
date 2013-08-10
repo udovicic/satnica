@@ -21,7 +21,7 @@ body {
 /* form */
 #form-container {
 	width: 360px;
-	margin: 80px auto;
+	margin: 120px auto;
 	text-align: center;
 }
 .form-header {
@@ -106,5 +106,70 @@ body {
 
 .shift-details span.number {
 	font-weight: bold;
+	font-style: italic;
+}
+
+/* SHIFT LIST */
+table.shift-list {
+	width: 460px;
+	margin: 80px auto;
+	font-family: "Courier New", Courier, monospace;
+	background: white;
+	padding: 10px;
+}
+table.shift-list caption {
+	background: #3d5054;
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	color: white;
+	line-height: 50px;
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 2px;
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+}
+
+.shift-list tr {
+	line-height: 20px;
+	font-size: 14px;
+}
+
+.shift-list thead {
+	border-bottom: 10px solid black;
+	margin-bottom: 10px;
+}
+
+.shift-list thead th {
+	text-align: left;
+	padding-left: 20px;
+}
+
+.shift-list tfoot {
+	font-weight: bold;
+}
+
+.shift-list tfoot th {
+	text-align: right;
+	padding-right: 50px;
+}
+
+.shift-list tr.data:hover {
+	font-weight: bold;
+	font-style: italic;
+}
+
+/* detalji smjene */
+.shift-list tr.details {
+	display: none;
+}
+.shift-list td ul {
+	padding: 0 30px;
+	text-align: justify;
+}
+.shift-list td ul span.title {
+	font-weight: bold;
+}
+.shift-list td ul span.value {
 	font-style: italic;
 }
