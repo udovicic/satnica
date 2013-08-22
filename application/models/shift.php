@@ -122,11 +122,18 @@ class Shift extends Core\Model
 	function save($shift_details, $shift_data)
 	{
 		$arg = array_merge($shift_details, $shift_data);
-		$arg['user_id'] = $this->user->get('user_id');
 		
-
-		$this->query('INSERT INTO shift (user_id, date, start, end, note, total, day, night, sunday, sunday_night, holiday, holiday_night) ' .
-			'VALUES (:user_id, :date, :start, :end, :note, :total, :day, :night, :sunday, :sunday_night, :holiday, :holiday_night)', $arg);
+		if (isset($shift_details['shift_id']) == true) {
+			// update request
+			return $this->query('UPDATE shift SET date=:date, start=:start, end=:end, note=:note, total=:total, '.
+				'day=:day, night=:night, sunday=:sunday, sunday_night=:sunday_night, holiday=:holiday, holiday_night=:holiday_night ' .
+				'WHERE shift_id=:shift_id', $arg);
+		} else {
+			// insert request
+			$arg['user_id'] = $this->user->get('user_id');
+			return $this->query('INSERT INTO shift (user_id, date, start, end, note, total, day, night, sunday, sunday_night, holiday, holiday_night) ' .
+				'VALUES (:user_id, :date, :start, :end, :note, :total, :day, :night, :sunday, :sunday_night, :holiday, :holiday_night)', $arg);
+		}
 	}
 
 /**
@@ -152,12 +159,18 @@ class Shift extends Core\Model
 			'AND date BETWEEN :start AND :end ' .
 			'ORDER BY date',
 			$arg);
+		if ($shifts == false) {
+			// no results returned
+			$shifts = array();
+		}
 
 		$data = array();
+
 		foreach ($shifts as $shift) {
 			$date = new DateTime($shift['date']);
 
 			$data[] = array(
+				'id' => $shift['shift_id'],
 				'date' => $date->format('d.m.Y'),
 				'start' => $shift['start'],
 				'end' => $shift['end'],
@@ -218,5 +231,15 @@ class Shift extends Core\Model
 		}
 
 		return $sum[0];
+	}
+
+/**
+ * Delete shift from db
+ *
+ * @param int $id shift_id field of record which should be deleted
+ */
+	function delete($id)
+	{
+		return $this->query('DELETE FROM shift WHERE shift_id=:shift_id', array('shift_id' => $id));
 	}
 }
