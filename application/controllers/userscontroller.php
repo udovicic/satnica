@@ -42,7 +42,7 @@ class UsersController extends Core\Controller
 			$user->set('user_id', $user_info['user_id']);
 
 			// redirect to default page
-			header("location: " . SITE_URL);
+			header('location: ' . SITE_URL);
 		}
 	}
 
@@ -51,8 +51,8 @@ class UsersController extends Core\Controller
  */
 	function logout()
 	{
-		$this->set('title', 'Odjava korisnika');
 		session_destroy();
+		header('location: ' . SITE_URL);
 	}
 	
 }
