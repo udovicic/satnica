@@ -24,4 +24,37 @@ class User extends Core\Model
 			return $info[0];
 		}
 	}
+
+/**
+ * Return list of available rates
+ *
+ * @return array string list
+ */
+	function getRateList()
+	{
+		$result = $this->query('SELECT rate_id, name FROM rate');
+		if ($result == false) {
+			$result = array();
+		}
+		
+		return $result;
+	}
+
+/**
+ * Update user info in database
+ *
+ * @param array $info Array with user information
+ * @return bool True on successful update
+ */
+	function update($info)
+	{
+		$sql = 'UPDATE user SET username=:username, email=:email, rate_id_fk=:rate_id';
+		if (isset($info['password']) == true) {
+			$sql .= ', password=:password';
+		}
+		$sql .= ' WHERE user_id=:user_id';
+
+		$result = $this->query($sql, $info);
+		return $result;
+	}
 }

@@ -19,20 +19,20 @@ body {
 }
 
 /* form */
-.form-container {
+#form-users-login {
 	width: 220px;
 	margin: 120px auto;
 }
-.form-container p {
+#form-users-login p {
 	margin: 0;
 	padding: 0;
 }
-.form-container p a {
+#form-users-login p a {
 	font-size: 11px;
 	letter-spacing: 1px;
 	padding: 15px 0;
 }
-.form-container input {
+#form-users-login input {
 	margin: 0;
 	background: #ffffff;
 	border: 1px solid #000000;
@@ -40,14 +40,14 @@ body {
 	padding: 10px;
 	width: 200px;
 }
-#username {
+#form-users-login #username {
 	border-bottom: none;
 	border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 }
 
-#password {
+#form-users-login #password {
 	margin-bottom: 10px;
 	border-top: 1px solid #828282;
 	border-radius: 0 0 5px 5px;
@@ -55,7 +55,7 @@ body {
 	-webkit-border-radius: 0 0 5px 5px;
 }
 
-#submit {
+#form-users-login #submit {
 	background: #3d5054;
 	color: #ffffff;
 	cursor: pointer;
@@ -67,13 +67,88 @@ body {
 	-webkit-border-radius: 5px;
 }
 
-p.alert {
+#form-users-login p.alert {
 	font-size: 11px;
 	letter-spacing: 1px;
 	color: #a54033;
 	font-weight: bold;
 }
-p.back {
+#form-users-login p.back {
 	margin-top: 15px;
 	text-align: center;
+}
+
+/* user profile */
+#form-users-profile {
+	width: 360px;
+	margin: 120px auto;
+	text-align: center;
+}
+#form-users-profile .form-header {
+	background: #3d5054;
+	color: white;
+	margin-bottom: 2px;
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+}
+#form-users-profile .form-header p {
+	line-height: 50px;
+	font-size: 25px;
+	font-weight: bold;
+}
+#form-users-profile .form-footer {
+	background: #3d5054;
+	color: white;
+	border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+}
+#form-users-profile .form-footer p {
+	position: relative;
+	line-height: 50px;
+	padding: 0 20px;
+	text-align: right;
+}
+#form-users-profile .form-footer input {
+	background: #6596a1;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #ffffff;
+	font-size: 16px;
+	padding: 2px 16px;
+	border: none;
+	cursor: pointer;
+}
+
+#form-users-profile .form-content {
+	text-align: left;
+	background: white;
+	padding: 5px;
+	margin-bottom: 2px;
+}
+#form-users-profile .form-content input , #form-users-profile .form-content select {
+	border: 1px solid #3d5054;
+	margin: 2px 0 2px;
+	background: #ffffff;
+	padding: 5px;
+	text-align: center;
+	font-size: 14px;
+	width: 170px;
+}
+#form-users-profile .form-content select {
+	width: 182px;
+	margin-left: -4px;
+}
+#form-users-profile label {
+	display: inline-block;
+	width: 130px;
+	text-align: right;
+	padding-right: 10px;
+}
+#form-users-profile .form-footer span {
+	position: absolute;
+	left: 16px;
+	font-size: 14px;
 }
