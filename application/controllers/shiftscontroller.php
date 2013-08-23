@@ -46,7 +46,7 @@ class ShiftsController extends Core\Controller
 			$end = new DateTime();
 			$start = new DateTime('1.' . $start . '.' . $end->format('Y'));
 			$end = clone $start;
-			$end->modify('+1 month');
+			$end->modify('+1 month -1 day');
 		} else {
 			$start = new DateTime($start);
 			$end = new DateTime($end);
