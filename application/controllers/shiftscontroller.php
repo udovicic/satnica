@@ -94,6 +94,18 @@ class ShiftsController extends Core\Controller
 
 			$this->Shift->save($shift_details, $shift_data);
 
+			//translate data for ui
+			$translate = array(
+				'day' => 'dnevni',
+				'night' => 'noćni',
+				'sunday' => 'nedjeljni',
+				'sunday_night' => 'nedjeljni noćni',
+				'holiday' => 'praznik',
+				'holiday_night' => 'praznik noćni'
+			);
+
+			// set up variables
+			$this->set('translate', $translate);
 			$this->set('komentar', $shift_details['note']);
 			$this->set('ukupno', $shift_details['total']);
 			$this->set('sati', $shift_data);

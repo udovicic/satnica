@@ -2,7 +2,7 @@
 	<p>Sažetak smjene:</p>
 	<ul>
 <?php foreach ($sati as $def => $num): if ($num != 0):?>
-		<li><span class="number"><?= $num ?></span> <?= $def ?></li>
+		<li><span class="number"><?= $num ?></span> <?= ucfirst($translate[$def]) ?></li>
 <?php endif; endforeach; ?>
 	</ul>
 	<p>Ukupan iznos: <span class="number"><?= $ukupno ?></span>Kn</p>

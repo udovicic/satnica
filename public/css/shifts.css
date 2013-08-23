@@ -158,6 +158,19 @@ table.shift-list caption {
 	font-weight: bold;
 	font-style: italic;
 }
+/* report buttons */
+span.edit {
+	background: url('../img/ic_edit.png') no-repeat;
+}
+span.delete {
+	background: url('../img/ic_cancel.png') no-repeat;
+}
+span.edit, span.delete {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background-size: 16px 16px;
+}
 
 /* detalji smjene */
 .shift-list tr.details {

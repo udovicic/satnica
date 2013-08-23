@@ -14,8 +14,8 @@
 					<td class="date"><?= $date ?></td>
 					<td class="time"><?= $start . ' - ' . $end ?></td>
 					<td class="total"><?= $total . 'Kn' ?></td>
-					<td class="edit">E</td>
-					<td class="delete">D</td>
+					<td class="edit"><span class="edit"></span></td>
+					<td class="delete"><span class="delete"></span></td>
 				</tr>
 				<tr class="details">
 					<td colspan="5">
