@@ -71,7 +71,7 @@ $(function() {
 		autoOpen: false,
 		title: 'Obavijest',
 		buttons: {
-			'Uredu': function() {
+			'U redu': function() {
 				var url = $(this).data('url');
 				if (typeof(url) != undefined) {
 					window.location = url;
