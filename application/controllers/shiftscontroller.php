@@ -33,35 +33,54 @@ class ShiftsController extends Core\Controller
 /**
  * Lists all shifts
  *
- * @param array $period Period for listing. If not provided, current month is used
+ * Generates lists of shift within request period of time
+ *
+ * @param string $start Begining of period, month or empty
+ * @param string $end End of period or empty
  */
 	function report($start = '', $end = '')
 	{
 		// parse input
-		//FIXME: handle invalid user input
-		if ($start == '' && $end == '') {
-			$start = new DateTime('first day of this month');
-			$end = new DateTime('first day of next month');
-		} else if ($start != '' && $end == '') {
-			$end = new DateTime();
-			$start = new DateTime('1.' . $start . '.' . $end->format('Y'));
-			$end = clone $start;
-			$end->modify('+1 month -1 day');
-		} else {
-			$start = new DateTime($start);
-			$end = new DateTime($end);
-		}
+		$period = $this->Shift->parsePeriodDate($start, $end);
 
 		// retrieve data from database
-		$data = $this->Shift->report($start->format('Y-m-d'), $end->format('Y-m-d'));
-		$sum = $this->Shift->reportSum($start->format('Y-m-d'), $end->format('Y-m-d'));
+		$data = $this->Shift->report($period['start']->format('Y-m-d'), $period['end']->format('Y-m-d'));
+		$sum = $this->Shift->reportSum($period['start']->format('Y-m-d'), $period['end']->format('Y-m-d'));
 
 		// prepare output
-		$this->set('title', 'Sažetak smjena za tekući mjesec');
+		$this->set('title', 'Sažetak smjena');
 		$this->set('data', $data);
 		$this->set('sum', $sum);
 	}
-	
+
+/**
+ * Generate printable version of report
+ *
+ * Like report, but generates PDF
+ *
+ * @param string $start Begining of period, month or empty
+ * @param string $end End of period or empty
+ */
+	function printable($start = '', $end = '')
+	{
+		// parse input
+		$period = $this->Shift->parsePeriodDate($start, $end);
+
+		// retrieve data from database
+		$data = $this->Shift->report($period['start']->format('Y-m-d'), $period['end']->format('Y-m-d'));
+		$sum = $this->Shift->reportSum($period['start']->format('Y-m-d'), $period['end']->format('Y-m-d'));
+
+		// don't output HTML, PDF will be used
+		$this->renderPage = false;
+
+		// create PDF object
+		$pdf = new Extend\PDF();
+		$pdf->title = "Sažetak smjena";
+
+		// generate table
+		$pdf->report($data, $sum);
+	}	
+
 /**
  * Handles saving new shift
  */

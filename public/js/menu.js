@@ -22,7 +22,7 @@ $(function() {
 		buttons: {
 			'Prikaži': function() {
 				var month = $('#dialog-monthly-report').find('#month').spinner('value');
-				var url = $('#report-link').attr('href') + '/' + month;
+				var url = $(this).data('url') + '/' + month;
 				window.location = url;
 			},
 			'Odustani': function() {
@@ -32,8 +32,10 @@ $(function() {
 	});
 
 	// click event setup
-	$('#report-link').click(function(event) {
+	$('.report-link').click(function(event) {
 		event.preventDefault();
-		$('#dialog-monthly-report').dialog('open');
+		$('#dialog-monthly-report')
+			.data('url', $(this).attr('href'))
+			.dialog('open');
 	});
 });

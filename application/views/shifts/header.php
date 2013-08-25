@@ -17,7 +17,13 @@
 	<div id='menu-wraper'>
 		<ul>
 			<li class="active"><a href="<?= SITE_URL ?>/shifts/add"><span>Unos</span></a></li>
-			<li class="active"><a href="<?= SITE_URL ?>/shifts/report" id="report-link"><span>Izvještaj</span></a></li>
+			<li class="active">
+				<a href="<?= SITE_URL ?>/shifts/report" class="report-link"><span>Izvještaj</span></a>
+				<ul>
+					<li class="active"><a href="<?= SITE_URL ?>/shifts/report" class="report-link"><span>Prikaz</span></a></li>
+					<li class="active"><a href="<?= SITE_URL ?>/shifts/printable" class="report-link"><span>Preuzmi PDF</span></a></li>
+				</ul>
+			</li>
 			<li class="active"><a href="<?= SITE_URL ?>/users/profile"><span>Profil</span></a></li>
 			<li class="active last"><a href="<?= SITE_URL ?>/users/logout"><span>Odjava</span></a></li>
 		</ul>

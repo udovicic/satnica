@@ -242,4 +242,36 @@ class Shift extends Core\Model
 	{
 		return $this->query('DELETE FROM shift WHERE shift_id=:shift_id', array('shift_id' => $id));
 	}
+
+/**
+ * Create start and end date for requested time period
+ *
+ * If both parameters are empty, current month will be used.
+ * If only start is provided, it should containt month number which should be used
+ * IF both parameters are used, they shoudl mark begining and end of period
+ *
+ * @param string $start Begining of period, month or empty
+ * @param string $end End of period or empty
+ * @return array Array containing start and end keys with valid dates
+ */
+	function parsePeriodDate($start='', $end='')
+	{
+		$period = array();
+
+		//FIXME: handle invalid user input
+		if ($start == '' && $end == '') {
+			$period['start'] = new DateTime('first day of this month');
+			$period['end'] = new DateTime('first day of next month');
+		} else if ($start != '' && $end == '') {
+			$end = new DateTime();
+			$period['start'] = new DateTime('1.' . $start . '.' . $end->format('Y'));
+			$period['end'] = clone $period['start'];
+			$period['end']->modify('+1 month -1 day');
+		} else {
+			$period['start'] = new DateTime($start);
+			$period['end'] = new DateTime($end);
+		}
+
+		return $period;
+	}
 }
