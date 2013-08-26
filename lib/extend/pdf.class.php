@@ -77,7 +77,11 @@ class PDF extends tFPDF
 			$details = array_keys($shift['details']);
 			$i=2;
 			foreach ($details as $detail) {
-				$this->Cell($w[$i], 6, $shift['details'][$detail], 'LR', 0, 'C', $fill);
+				$cell_text = $shift['details'][$detail];
+				if ($cell_text == 0) {
+					$cell_text = '-';
+				}
+				$this->Cell($w[$i], 6, $cell_text, 'LR', 0, 'C', $fill);
 				$i++;
 			}
 
@@ -95,7 +99,11 @@ class PDF extends tFPDF
 		$details = array_keys($footer['details']);
 		$i=2;
 		foreach ($details as $detail) {
-			$this->Cell($w[$i], 7, $footer['details'][$detail], 1, 0, 'C', 1);
+			$cell_text = $footer['details'][$detail];
+				if ($cell_text == 0) {
+					$cell_text = '-';
+				}
+			$this->Cell($w[$i], 7, $cell_text, 1, 0, 'C', 1);
 			$i++;
 		}
 

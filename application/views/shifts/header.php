@@ -29,7 +29,7 @@
 		</ul>
 	</div>
 	<div id="dialog-monthly-report">
-		<label for="month">Odaberite datum:</label>
+		<label for="month">Odaberite mjesec:</label>
 		<input type="text" id="month" name="month" value="0" readonly>
 	</div>
 	<div id="content-wraper">
