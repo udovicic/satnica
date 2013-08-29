@@ -77,6 +77,8 @@ class UsersController extends Core\Controller
 			if ($info['username'] == '' || $info['email'] == '' || $info['rate_id'] == '') {
 				// required fields not entered
 				$this->set('notify', 'Korisničko ime i email su obvezni');
+			} else if (filter_var($info['email'], FILTER_VALIDATE_EMAIL) == false) {
+				$this->set('notify', 'Neispravan format email adrese');
 			} else {
 				// make database update
 				$result = $this->User->update($info);
