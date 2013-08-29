@@ -155,7 +155,7 @@ class Shift extends Core\Model
 
 		$shifts = $this->query(
 			'SELECT * FROM shift ' .
-			'WHERE user_id=:user_id ' .
+			'WHERE user_id_fk=:user_id ' .
 			'AND date BETWEEN :start AND :end ' .
 			'ORDER BY date',
 			$arg);
@@ -211,7 +211,7 @@ class Shift extends Core\Model
 			'sum(sunday) as sunday, sum(sunday_night) as sunday_night, ' .
 			'sum(holiday) as holiday, sum(holiday_night) as holiday_night, ' .
 			'sum(total) as total FROM shift ' .
-			'WHERE user_id=:user_id ' .
+			'WHERE user_id_fk=:user_id ' .
 			'AND date BETWEEN :start AND :end ' .
 			'ORDER BY date',
 			$arg);
@@ -258,18 +258,21 @@ class Shift extends Core\Model
 	{
 		$period = array();
 
-		//FIXME: handle invalid user input
-		if ($start == '' && $end == '') {
-			$period['start'] = new DateTime('first day of this month');
-			$period['end'] = new DateTime('first day of next month');
-		} else if ($start != '' && $end == '') {
-			$end = new DateTime();
-			$period['start'] = new DateTime('1.' . $start . '.' . $end->format('Y'));
-			$period['end'] = clone $period['start'];
-			$period['end']->modify('+1 month -1 day');
-		} else {
-			$period['start'] = new DateTime($start);
-			$period['end'] = new DateTime($end);
+		try {
+			if ($start == '' && $end == '') {
+				$period['start'] = new DateTime('first day of this month');
+				$period['end'] = new DateTime('first day of next month');
+			} else if ($start != '' && $end == '') {
+				$end = new DateTime();
+				$period['start'] = new DateTime('1.' . $start . '.' . $end->format('Y'));
+				$period['end'] = clone $period['start'];
+				$period['end']->modify('+1 month -1 day');
+			} else {
+				$period['start'] = new DateTime($start);
+				$period['end'] = new DateTime($end);
+			}
+		} catch(Exception $ex) {
+			return $this->parsePeriodDate();
 		}
 
 		return $period;
